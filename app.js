@@ -9,6 +9,7 @@ let MAPTOKEN = 'pk.eyJ1IjoidGVqYXMwMTAxIiwiYSI6ImNseXZjaG8ydjFmNjYyaXFsc2IyaWZhc
 const geocodingClient = mbxGeoCoding({accessToken : MAPTOKEN});
 const API_KEY = "AIzaSyBtEiZjHeDsSQLqSR7hFGluQMLUWTZqNaw";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { log } = require("console");
 const genAI = new GoogleGenerativeAI(API_KEY);
 //==============================================================================================================================================================================
 async function run(past, future) {
@@ -24,6 +25,7 @@ async function run(past, future) {
         const text = await response.text();
         // Strip out anything before the first `{` and after the last `}`
         const jsonText = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
+       
 
         // Try parsing the JSON
         let crops = null;
@@ -45,7 +47,7 @@ async function run(past, future) {
 }
 
 app.set("view engine", "ejs");
-app.set("Views", path.join(__dirname, "/Views"));
+app.set("views", path.join(__dirname, "/Views"));
 app.use(express.static('Public'))
 
 // handel post request 
