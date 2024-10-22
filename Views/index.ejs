@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            background-color: rgb(221, 249, 221);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+    <br>
+    <form action="/submit" method="post">
+        <label for="cityname">City</label>
+        <input type="text" name="cityname" placeholder="Enter Your City Name" required>
+        <h2>Soil Data - For More Accuracy </h2>
+        <br><br>
+        <label for="phosporous">Enter phosporous PPM</label>
+        <input type="text" name="phosporous" placeholder="Ex 33.6kg/ha">
+        <br><br>
+        <label for="nitrogen">Enter nitrogen PPM</label>
+        <input type="text" name="nitrogen" placeholder="ppm">
+        <br><br>
+        <label for="potassium">Enter potassium PPM</label>
+        <input type="text" name="potassium" placeholder="ppm">
+        <br><br>
+        <label for="ph">Enter ph PPM</label>
+        <select name="ph" >
+            <option value="very-acidic">Very Acidic (pH &lt; 5.0)</option>
+            <option value="moderately-acidic">Moderately Acidic (pH 5.0 - 6.0)</option>
+            <option value="slightly-acidic">Slightly Acidic (pH 6.0 - 6.5)</option>
+            <option value="neutral">Neutral (pH 6.5 - 7.5)</option>
+            <option value="slightly-alkaline">Slightly Alkaline (pH 7.5 - 8.5)</option>
+            <option value="alkaline">Alkaline (pH &gt; 8.5)</option>
+        </select>
+        <br><br>
+        <label for="moisture">Enter moisture PPM</label>
+        <input type="text" name="moisture" placeholder="%">
+        <br><br>
+        <label for="soiltype">Soil Type</label>
+        <select name="soiltype">
+            <option value="black">Black Soil (Regur Soil)</option>
+            <option value="red">Red Soil</option>
+            <option value="desert">Desert Soil</option>
+            <option value="mountain">Mountain Soil</option>
+            <option value="saline-alkaline">Saline and Alkaline Soil</option>
+            <option value="peaty-marshy">Peaty and Marshy Soil</option>
+        </select>
+        <br><br>
+        <label for="wateravailablity">Water Availablity</label>
+        <select name="wateravailablity" >
+            <option value="high">High Availability</option>
+            <option value="moderate">Moderate Availability</option>
+            <option value="low">Low Availability</option>
+            <option value="rainfed">Rain-fed Only</option>
+            <option value="irrigated">Irrigated</option>
+        </select>
+        <br><br>
+        <button>Submit</button>
+    </form>
+    </div>
+    
+</body>
+</html>

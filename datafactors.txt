@@ -1,0 +1,14 @@
+Location-Specific Data:
+Precise Location: Provide the city, state, and country where your farm is located.
+Latitude and Longitude: If available, include the exact geographic coordinates.
+Elevation: Specify the altitude of your farm in meters or feet.
+Soil Type: Describe the soil texture (e.g., sandy, loamy, clayey) and its structure (e.g., well-drained, poorly drained).
+Soil pH: Indicate the acidity or alkalinity of the soil (e.g., acidic, neutral, alkaline).
+Soil Nutrient Content: Specify the levels of key nutrients like nitrogen, phosphorus, and potassium, if known.
+Water Availability: Describe the source of water (e.g., irrigation, rainfall) and its quality (e.g., freshwater, saline water).
+Climate:
+Average Annual Rainfall: Specify the total amount of rainfall in millimeters or inches.
+Temperature Extremes: Provide the highest and lowest average temperatures.
+Frost Occurrence: Indicate the frequency and severity of frost.
+Growing Season: Specify the length of the growing season (number of frost-free days).
+Topography: Describe the slope (e.g., gentle, steep) and aspect (north, south, east, west) of your farm.
