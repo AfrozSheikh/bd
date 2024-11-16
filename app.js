@@ -4,18 +4,22 @@ if (process.env.NODE_ENV != "production") {
 
 const express = require("express");
 const app = express();
-const path = require("path");
+
 const cors = require("cors");
 const mbxGeoCoding = require('@mapbox/mapbox-sdk/services/geocoding');
 let MAPTOKEN = 'pk.eyJ1IjoidGVqYXMwMTAxIiwiYSI6ImNseXZjaG8ydjFmNjYyaXFsc2IyaWZhcDYifQ.sWbJnDj1kESUEG237t0TFA';
 const geocodingClient = mbxGeoCoding({ accessToken: MAPTOKEN });
-const API_KEY = "AIzaSyBtEiZjHeDsSQLqSR7hFGluQMLUWTZqNaw";
+const API_KEY = "AIzaSyA2I4VwyBBeie0AfmooqKbFfSgi883C5IU";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(API_KEY);
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
 
 //==============================================================================================================================================================================
 async function run(past, future) {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
 
     let futureWeather = future;
     let pastWeather = past;
@@ -52,10 +56,36 @@ async function run(past, future) {
     }
 }
 
+app.post("/search", async (req, res) => {
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
 
-app.use(express.json());
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
+    // Assuming 'input' comes from the request body, not from params
+    const { cropName } = req.body;  // Adjust this based on how you're passing data
+
+    if (!cropName) {
+        return res.status(400).send({ error: "Crop name is required in the request body" });
+    }
+
+    const prompt = `My crop name is ${cropName}. If its not any crop just say Not a Crop...Please try again..- and if its
+    a crop  give answer of 6 lines .`;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const response = await result.response.text();  // Await the response text
+        console.log(response);
+        
+
+        // Send the response to the client
+        res.send({ data: response });
+    } catch (error) {
+        console.error("Error generating crops:", error);
+        res.status(500).send({ error: "Error generating the crop information" });
+    }
+});
+
+
+
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Weather Calculation Function 
@@ -70,6 +100,8 @@ let getAveragedata = (arr) => {
 }
 let futureWeather;
 let pastThreeMonths;
+
+
 
 async function getWeatherPast(lati, long) {
     let weather = await fetch(`https://historical-forecast-api.open-meteo.com/v1/forecast?latitude=${lati}&longitude=${long}&start_date=2024-09-20&end_date=2024-10-03&hourly=temperature_2m,relative_humidity_2m,surface_pressure,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,soil_temperature_0cm,soil_temperature_54cm,soil_moisture_0_to_1cm,soil_moisture_27_to_81cm&daily=uv_index_max,uv_index_clear_sky_max`);
@@ -187,6 +219,8 @@ app.post("/submit", async (req, res) => {
         return res.status(500).send({ error: "Something went wrong. Please try again later." });
     }
 });
+
+
 
 
 //===============================================================================================================================================================================================

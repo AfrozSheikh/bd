@@ -1,4 +1,5 @@
-const API_KEY = "AIzaSyBtEiZjHeDsSQLqSR7hFGluQMLUWTZqNaw";
+// const API_KEY = "AIzaSyBtEiZjHeDsSQLqSR7hFGluQMLUWTZqNaw";
+const API_KEY = "AIzaSyA2I4VwyBBeie0AfmooqKbFfSgi883C5IU"
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Access your API key as an environment variable
